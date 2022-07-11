@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!-- Created By CodingLab - www.codinglabweb.com -->
 <html lang="en" dir="ltr">
@@ -62,7 +63,9 @@
         var selectdcounsiling=(x[i].value);
       }
     }
-          if(selectdcounsiling=="csab"){
+         
+    if(selectdcounsiling=="csab"){
+      document.getElementById("exam-modal").style.display="none";
             document.getElementById('counse-2').readOnly=true;
             document.getElementById("reserve").style.display="none";
       document.getElementById("open").style.display="block";
@@ -72,6 +75,7 @@
             }
           }
           else{
+            document.getElementById("exam-modal").style.display="block";
             document.getElementById('counse-2').readOnly=false;
             var ranktype=document.getElementById("cast").value;
             for(var i=3;i<=6;i++){
@@ -90,11 +94,74 @@
           }
         }
         window.onload=function(){
+          document.getElementById('round_1').checked=true;
           document.getElementById('counse').checked=true;
           document.getElementById('exam-forma').checked=true;
           hidecollegelist();
           roundselect();
         }
+
+        function pwdfunction(event){
+          var pwdtype=event.target.value;
+          // console.log(pwdtype);
+          if(pwdtype=="yes"){
+            document.getElementById("open").style.display="none";
+      document.getElementById("reserve").style.display="block";
+      document.getElementById("allindiarank").required=false;
+          }
+          else{
+            document.getElementById("reserve").style.display="none";
+      document.getElementById("open").style.display="block";
+      document.getElementById("Category-RANK").required=false;
+          }
+        }
+
+
+        function instituteselect(){
+            var instituteselected=document.getElementById("institute-type").value;
+            if(instituteselected=="ALL"){
+              var selectcoll=document.getElementById('institute-name');
+        for(var i=24;i<=110;i++){
+          selectcoll.getElementsByTagName("option")[i].style.display='block';
+        }
+        for(var i=1;i<=23;i++){
+          selectcoll.getElementsByTagName("option")[i].style.display='none';
+        }
+            }
+          else if(instituteselected=="NIT"){
+              var selectcoll=document.getElementById('institute-name');
+        for(var i=24;i<=55;i++){
+          selectcoll.getElementsByTagName("option")[i].style.display='block';
+        }
+        for(var i=1;i<=23;i++){
+          selectcoll.getElementsByTagName("option")[i].style.display='none';
+        }
+        for(var i=56;i<=110;i++){
+          selectcoll.getElementsByTagName("option")[i].style.display='none';
+        }
+            }
+            else if(instituteselected=="3IT"){
+              var selectcoll=document.getElementById('institute-name');
+        for(var i=55;i<=81;i++){
+          selectcoll.getElementsByTagName("option")[i].style.display='block';
+        }
+        for(var i=1;i<=55;i++){
+          selectcoll.getElementsByTagName("option")[i].style.display='none';
+        }
+        for(var i=82;i<=110;i++){
+          selectcoll.getElementsByTagName("option")[i].style.display='none';
+        }
+            }
+            else if(instituteselected=="CFI"){
+              var selectcoll=document.getElementById('institute-name');
+        for(var i=82;i<=110;i++){
+          selectcoll.getElementsByTagName("option")[i].style.display='block';
+        }
+        for(var i=1;i<=81;i++){
+          selectcoll.getElementsByTagName("option")[i].style.display='none';
+        }
+            }
+          }
       </script>
    
    
@@ -103,18 +170,18 @@
 
 <body>
   <div class="container">
-    <div class="title">counsiling form</div>
+    <div class="title">Counselling Form</div>
     <div class="content">
-      <form action="#">
+      <form action="collegepre.php" method="post">
         <div class="user-details">
           
           
             <div class="input-box">
               <div class='Eexam'><p>
-                <label for='exam'>counseling:</label>
+                <label for='exam'>Counselling:</label>
                 <div class='radio-container'>
                   <input checked='' id='exam-forma' name='ct' type='radio' value='joosa' onclick="roundselect(event);">
-                  <label for='exam-forma' >Joosa</label>
+                  <label for='exam-forma' >Josaa</label>
                   <input id='exam-type' name='ct' type='radio' value='csab' onclick="roundselect(event);">
                   <label for='exam-type' >CSAB</label>
                 </div></p>
@@ -124,8 +191,8 @@
           
           <div class="input-box">
             
-            <div class='counselin'><p>
-              <label for='gend'>exam </label>
+            <div class='counselin' id="exam-modal"><p>
+              <label for='gend'>Exam </label>
               <div class='radio-container'>
                 <input  id='counse' name='counselling' type='radio' value='mains'  onclick="hidecollegelist();" checked>
                 <label for='counse'>mains</label>
@@ -138,18 +205,18 @@
           <div class="input-box">
             <div class="ronddiv">
               <label>Round
-                <select name="round" id="Round"><option value="round_1">Round1</option>
-                  <option value="round_2">Round2</option>
-                  <option id="round3" value="round_3">Round3</option>
-                  <option id="round4" value="round_4">Round4</option>
-                  <option id="round5" value="round_5">Round5</option>
-                  <option id="round6" value="round_6">Round6</option></select>
+                <select name="round" id="Round"><option value="round_1">Round 1</option>
+                  <option value="round_2">Round 2</option>
+                  <option id="round3" value="round_3">Round 3</option>
+                  <option id="round4" value="round_4">Round 4</option>
+                  <option id="round5" value="round_5">Round 5</option>
+                  <option id="round6" value="round_6">Round 6</option></select>
               </label></div>
           </div>
           <div class="input-box">
             <div class="required">
               <div class="castdiv">
-                  <label>Caste
+                  <label>Category
                  <select required id="cast" name="category" onchange="casts(event);">
                    <option value="OPEN" >GENERAL</option>
    <option value="OBC-NCL" >OBC</option>
@@ -159,12 +226,52 @@
                    </select>
              </label></div></div>
           </div>
+
          
+          <!-- <div class='gender'>
+            <label for='gend'>Gender :</label>
+            <div class='radio-container'>
+              <input checked='' id='gender-female' name='gender' type='radio' value='F'>
+              <label for='gender-female'>Female</label>
+               <input id='gender-male' name='gender' type='radio' value='M'>
+              <label for='gender-male'>Male</label> 
+              <input id='neutral' name='gender' type='radio' value='N'>
+              <label for='neutral'>neutral</label>
+            </div>
+          </div> -->
+          <div class="input-box">
+          <div class='gender'>
+            <label for='gend'>Gender :</label>
+            <div class='radio-container'>
+              <input checked='' id='gender-female' name='gender' type='radio' value="Female-only (including
+              Supernumerary)">
+              <label for='gender-female'>Female</label>
+              <input id='gender-male' name='gender' type='radio' value="Gender-Neutral">
+              <label for='gender-male'>Male</label>
+              <input id='neutral' name='gender' type='radio' value="Female-only (including
+              Supernumerary)">
+              <label for='neutral'>neutral</label>
+            </div>
+          </div>
+          </div>
+         
+          <div class="input-box">
+            <div class='pwd :'>
+              <label for='pwd'>PwD :</label><p>
+              <div class='radio-container'>
+                <input checked='' id='pwd-Yes' name='pwd' type='radio' value='yes'>
+                <label for='pwd-Yes'>Yes</label>
+                <input checked='' id='pwd-No' name='pwd' type='radio' value='NO'>
+                <label for='pwd-No'>No</label>
+              </div></p>
+            </div>
+              </div>
          <div class="input-box">
           <div class="homediv">
             <label>Home-state
             <select required id="Round" name="state">
-              <option value="54"> Andhra Pradesh1</option>
+              <option value="0"> All</option>
+              <option value="54"> Andhra Pradesh</option>
               <option value="41">Arunachal Pradesh</option>
               <option value="47"> Assam</option>
               <option value="37">Bihar</option>
@@ -196,13 +303,13 @@
               <option value="50">Uttarakhand </option>
               <option value="31,">West Bengal</option>
                  </select>
-            </label><br><br>
+            </label>
           </div>
         </div>
           
           <div class="input-box">
             <div class="statediv">
-              <label>branch:
+              <label>Branch:
                 <input list="branch" name="selectedbranch" required />
               <datalist id="branch">
                 <option value="ALL">
@@ -364,11 +471,21 @@
             </label>
             </div>
           </div>
-
+<div class="input-box">
+  <div class="class1">
+    <label>Institute-type
+<select name="institute-type"  id="institute-type" class="chosen-select" onchange="instituteselect();"> 
+    <option selected="selected" value="ALL">ALL</option>
+    <option value="NIT">National Institute of Technology</option>
+    <option value="CFI">Government Funded Technical Institutions</option>
+    <option value="3IT">Indian Institute of Information Technology</option>
+</select></label></div>
+</div>
           <div class="input-box">
             <div class="college">
-              <label>institute-Name   
-         <select name="institute-name"  id="institute-name" > 
+              <label>Institute-Name   
+         <select name="institute-name"  id="institute-name"  placeholder="select" > 
+           
            <option value="0">ALL</option>
            <option value="101">Indian Institute  of Technology Bhubaneswar</option>
            <option value="102">Indian Institute  of Technology Bombay</option>
@@ -484,7 +601,7 @@
          </select>
               </label></div>
           </div>
-<div class="input-box">
+<!-- <div class="input-box">
   <div class='pwd :'>
     <label for='pwd'>PwD</label>
     <div class='radio-container'>
@@ -494,7 +611,8 @@
       <label for='pwd-No'>No</label>
     </div>
   </div>
-    </div>
+    </div> -->
+    
    
       <div class="input-box"> 
         <div class="input-container" id="open">
@@ -528,5 +646,4 @@
     </div>
   </div>
 
-</body>
 </html>
