@@ -31,7 +31,7 @@ elseif($selectedcollege>400 && $selectedcollege<500){
 /* Attempt MySQL server connection. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
 if($ct=="joosa"){
-$link = mysqli_connect("sql303.epizy.com", "epiz_29978379", "u3kVasrmhP566aZ","epiz_29978379_josaa");
+$link = mysqli_connect("localhost", "root","","collegepredictor");
 // Check connection
 if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
@@ -121,7 +121,7 @@ if($result = mysqli_query($link, $sql)){
 }
 }
 else{
-    $link = mysqli_connect("sql303.epizy.com", "epiz_29978379", "u3kVasrmhP566aZ","epiz_29978379_csab");
+    $link = mysqli_connect("localhost","root","","csabpredictor");
  
     // Check connection
     if($link === false){
