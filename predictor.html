@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<!-- Created By CodingLab - www.codinglabweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <!---<title> Responsive Registration Form | CodingLab </title>--->
+    <link rel="stylesheet" href="precictor.css">
+    <link rel="stylesheet" href=".css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+     <script>
+        function hidecollegelist(){
+          var x=document.getElementsByName('counselling');
+          console.log(x);
+    for(var i=0;i<=1;i++){
+      if(x[i].checked){
+        var selectedinstitute=(x[i].value);
+      }
+    }
+    if(selectedinstitute=="advance"){
+      var selectcoll=document.getElementById('institute-name');
+      for(var i=24;i<=110;i++){
+        selectcoll.getElementsByTagName("option")[i].style.display='none';
+      }
+      for(var i=1;i<=23;i++){
+        selectcoll.getElementsByTagName("option")[i].style.display='block';
+      }
+    }
+    else{
+      var selectcoll=document.getElementById('institute-name');
+      for(var i=1;i<=23;i++){
+        selectcoll.getElementsByTagName("option")[i].style.display='none';
+      }
+      for(var i=24;i<=110;i++){
+        selectcoll.getElementsByTagName("option")[i].style.display='block';
+      }
+    }
+        }
+        function casts(){
+    var ranktype=document.getElementById("cast").value;
+    var x=document.getElementsByName('ct');
+    for(var i=0;i<=1;i++){
+      if(x[i].checked){
+        var selectdcounsiling=(x[i].value);
+      }
+    }
+    if(ranktype=="OPEN"||selectdcounsiling=="csab"){
+      document.getElementById("reserve").style.display="none";
+      document.getElementById("open").style.display="block";
+      document.getElementById("Category-RANK").required=false;
+    }
+    else{
+      document.getElementById("open").style.display="none";
+      document.getElementById("reserve").style.display="block";
+      document.getElementById("allindiarank").required=false;
+    }
+  }
+        function roundselect(){
+          var x=document.getElementsByName('ct');
+    for(var i=0;i<=1;i++){
+      if(x[i].checked){
+        var selectdcounsiling=(x[i].value);
+      }
+    }
+          if(selectdcounsiling=="csab"){
+            document.getElementById('counse-2').readOnly=true;
+            document.getElementById("reserve").style.display="none";
+      document.getElementById("open").style.display="block";
+      document.getElementById("Category-RANK").required=false;
+            for(var i=3;i<=6;i++){
+             var casbround=document.getElementById('round'+i).style.display="none";
+            }
+          }
+          else{
+            document.getElementById('counse-2').readOnly=false;
+            var ranktype=document.getElementById("cast").value;
+            for(var i=3;i<=6;i++){
+             var casbround=document.getElementById('round'+i).style.display="block";
+            }
+            if(ranktype=="OPEN"){
+      document.getElementById("reserve").style.display="none";
+      document.getElementById("open").style.display="block";
+      document.getElementById("Category-RANK").required=false;
+    }
+    else{
+      document.getElementById("open").style.display="none";
+      document.getElementById("reserve").style.display="block";
+      document.getElementById("allindiarank").required=false;
+    }
+          }
+        }
+        window.onload=function(){
+          document.getElementById('counse').checked=true;
+          document.getElementById('exam-forma').checked=true;
+          hidecollegelist();
+          roundselect();
+        }
+      </script>
+   
+   
+   
+    </head>
+
+<body>
+  <div class="container">
+    <div class="title">counsiling form</div>
+    <div class="content">
+      <form action="#">
+        <div class="user-details">
+          
+          
+            <div class="input-box">
+              <div class='Eexam'><p>
+                <label for='exam'>counseling:</label>
+                <div class='radio-container'>
+                  <input checked='' id='exam-forma' name='ct' type='radio' value='joosa' onclick="roundselect(event);">
+                  <label for='exam-forma' >Joosa</label>
+                  <input id='exam-type' name='ct' type='radio' value='csab' onclick="roundselect(event);">
+                  <label for='exam-type' >CSAB</label>
+                </div></p>
+              </div>
+          </div>
+          
+          
+          <div class="input-box">
+            
+            <div class='counselin'><p>
+              <label for='gend'>exam </label>
+              <div class='radio-container'>
+                <input  id='counse' name='counselling' type='radio' value='mains'  onclick="hidecollegelist();" checked>
+                <label for='counse'>mains</label>
+                <input id='counse-2' name='counselling' type='radio' value='advance' onclick="hidecollegelist();">
+                <label for='counse-2' >Advance</label>
+              </div></p>
+            </div>
+          </div>
+          
+          <div class="input-box">
+            <div class="ronddiv">
+              <label>Round
+                <select name="round" id="Round"><option value="round_1">Round1</option>
+                  <option value="round_2">Round2</option>
+                  <option id="round3" value="round_3">Round3</option>
+                  <option id="round4" value="round_4">Round4</option>
+                  <option id="round5" value="round_5">Round5</option>
+                  <option id="round6" value="round_6">Round6</option></select>
+              </label></div>
+          </div>
+          <div class="input-box">
+            <div class="required">
+              <div class="castdiv">
+                  <label>Caste
+                 <select required id="cast" name="category" onchange="casts(event);">
+                   <option value="OPEN" >GENERAL</option>
+   <option value="OBC-NCL" >OBC</option>
+   <option value="EWS" >EWS</option>
+   <option value="SC" >SC</option>
+   <option value="ST" >ST</option>
+                   </select>
+             </label></div></div>
+          </div>
+         
+         <div class="input-box">
+          <div class="homediv">
+            <label>Home-state
+            <select required id="Round" name="state">
+              <option value="54"> Andhra Pradesh1</option>
+              <option value="41">Arunachal Pradesh</option>
+              <option value="47"> Assam</option>
+              <option value="37">Bihar</option>
+              <option value="39">Chhattisgarh</option>
+              <option value="32">Goa</option>
+              <option value="30">delhi</option>
+              <option value="52">Gujarat</option>
+              <option value="43">Haryana </option>
+              <option value="33">Himachal Pradesh</option>
+              <option value="48">Jammu and Kashmir </option>
+              <option value="42">Jharkhand </option>
+              <option value="34">Karnataka</option>
+              <option value="29">Kerala</option>
+              <option value="26">Madhya Pradesh </option>
+              <option value="53">Maharashtra</option>
+              <option value="44">Manipur</option>
+              <option value="35">Meghalaya </option>
+              <option value="45">Mizoram </option>
+              <option value="36">Nagaland </option>
+              <option value="46">Odisha</option>
+              <option value="24">Punjab </option>
+              <option value="25">Rajasthan </option>
+              <option value="40">Sikkim </option>
+              <option value="49">Tamil Nadu</option>
+              <option value="38">Tamil Nadu(puducherry)</option>
+              <option value="51">Telangana</option>
+              <option value="28">Tripura </option>
+              <option value="27">Uttar Pradesh</option>
+              <option value="50">Uttarakhand </option>
+              <option value="31,">West Bengal</option>
+                 </select>
+            </label><br><br>
+          </div>
+        </div>
+          
+          <div class="input-box">
+            <div class="statediv">
+              <label>branch:
+                <input list="branch" name="selectedbranch" required />
+              <datalist id="branch">
+                <option value="ALL">
+              <option value="Aerospace Engineering (4 Years, Bachelor of Technology)">
+              <option value="Agricultural and Food Engineering (4 Years, Bachelor of Technology)">
+              <option value="Biological Sciences and Bioengineering (4 Years, Bachelor of Technology)">
+              <option value="Bio Technology (4 Years, Bachelor of Technology)">
+              <option value="Biotechnology and Biochemical Engineering (4 Years, Bachelor of Technology)">
+              <option value="Ceramic Engineering (4 Years, Bachelor of Technology)">
+              <option value="Chemical Engineering (4 Years, Bachelor of Technology)">
+              <option value="Chemical Science and Technology (4 Years, Bachelor of Technology)">
+              <option value="Civil Engineering (4 Years, Bachelor of Technology)">
+              <option value="Computer Science and Engineering (4 Years, Bachelor of Technology)">
+              <option value="Electrical Engineering (4 Years, Bachelor of Technology)">
+              <option value="Electrical Engineering (Power and Automation) (4 Years, Bachelor of Technology)">
+              <option value="Electronics Engineering (4 Years, Bachelor of Technology)">
+              <option value="Electronics and Communication Engineering (4 Years, Bachelor of Technology)">
+              <option value="Electronics and Electrical Communication Engineering (4 Years, Bachelor of Technology)">
+              <option value="Electronics and Electrical Engineering (4 Years, Bachelor of Technology)">
+              <option value="Engineering Physics (4 Years, Bachelor of Technology)">
+              <option value="Engineering Science (4 Years, Bachelor of Technology)">
+              <option value="Environmental Engineering (4 Years, Bachelor of Technology)">
+              <option value="Instrumentation Engineering (4 Years, Bachelor of Technology)">
+              <option value="Manufacturing Science and Engineering (4 Years, Bachelor of Technology)">
+              <option value="Materials Science and Engineering (4 Years, Bachelor of Technology)">
+              <option value="Mathematics and Computing (4 Years, Bachelor of Technology)">
+              <option value="Mechanical Engineering (4 Years, Bachelor of Technology)">
+              <option value="Metallurgical Engineering (4 Years, Bachelor of Technology)">
+              <option value="Metallurgical and Materials Engineering (4 Years, Bachelor of Technology)">
+              <option value="Metallurgical Engineering and Materials Science (4 Years, Bachelor of Technology)">
+              <option value="Mining Engineering  (4 Years, Bachelor of Technology)">
+              <option value="Mining Machinery Engineering (4 Years, Bachelor of Technology)">
+              <option value="Naval Architecture and Ocean Engineering (4 Years, Bachelor of Technology)">
+              <option value="Ocean Engineering and Naval Architecture (4 Years, Bachelor of Technology)">
+              <option value="Petroleum Engineering (4 Years, Bachelor of Technology)">
+              <option value="Polymer Science and Engineering (4 Years, Bachelor of Technology)">
+              <option value="Production and Industrial Engineering (4 Years, Bachelor of Technology)">
+              <option value="Electronics System Engineering (4 Years, Bachelor of Technology)">
+              <option value="Textile Technology (4 Years, Bachelor of Technology)">
+              <option value="Civil and Infrastructure Engineering (4 Years, Bachelor of Technology)">
+              <option value="Electronics and Instrumentation Engineering (4 Years, Bachelor of Technology)">
+              <option value="Bio Engineering (4 Years, Bachelor of Technology)">
+              <option value="Electrical and Electronics Engineering (4 Years, Bachelor of Technology)">
+              <option value="Production Engineering (4 Years, Bachelor of Technology)">
+              <option value="Information Technology (4 Years, Bachelor of Technology)">
+              <option value="Instrumentation and Control Engineering (4 Years, Bachelor of Technology)">
+              <option value="Industrial and Production Engineering (4 Years, Bachelor of Technology)">
+              <option value="Computer Engineering (4 Years, Bachelor of Technology)">
+              <option value="Bio Medical Engineering (4 Years, Bachelor of Technology)">
+              <option value="Electronics and Telecommunication Engineering (4 Years, Bachelor of Technology)">
+              <option value="Industrial Design (4 Years, Bachelor of Technology)">
+              <option value=">Metallurgy and Materials Engineering (4 Years, Bachelor of Technology)">
+              <option value="Chemical Engineering (Plastic and Polymer) (4 Years, Bachelor of Technology)">
+              <option value="Carpet  and Textile Technology (4 Years, Bachelor of Technology)">
+              <option value="Materials Science and Metallurgical Engineering (4 Years, Bachelor of Technology)">
+              <option value="Food Technology (4 Years, Bachelor of Technology)">
+              <option value="Food Engineering  and Technology (4 Years, Bachelor of Technology)">
+              <option value="Agricultural Engineering (4 Years, Bachelor of Technology)">
+              <option value="Food Process Engineering (4 Years, Bachelor of Technology)">
+              <option value="Industrial and Systems Engineering (4 Years, Bachelor of Technology)">
+              <option value="Pharmaceutical Engineering &amp; Technology (4 Years, Bachelor of Technology)">
+              <option value="Electronics and Communication Engineering with specialization in Design and Manufacturing (4 Years, Bachelor of Technology)">
+              <option value="Mechanical Engineering with specialization in Design and Manufacturing (4 Years, Bachelor of Technology)">
+              <option value="Smart Manufacturing (4 Years, Bachelor of Technology)">
+              <option value="Mechatronics Engineering (4 Years, Bachelor of Technology)">
+              <option value="Electrical and Instrumentation Engineering (4 Years, Bachelor of Technology)">
+              <option value="Data Science and Artificial Intelligence (4 Years, Bachelor of Technology)">
+              <option value="Food Technology and Management (4 Years, Bachelor of Technology)">
+              <option value="Computer Science (4 Years, Bachelor of Technology)">
+              <option value="Artificial Intelligence (4 Years, Bachelor of Technology)">
+              <option value="Information Technology-Business Informatics (4 Years, Bachelor of Technology)">
+              <option value="Data Science and Engineering (4 Years, Bachelor of Technology)">
+              <option value="Artificial Intelligence and Data Science (4 Years, Bachelor of Technology)">
+              <option value="Computer Science and Artificial Intelligence (4 Years, Bachelor of Technology)">
+              <option value="Biomedical Engineering (4 Years, Bachelor of Technology)">
+              <option value="Engineering and Computational Mechanics (4 Years, Bachelor of Technology)">
+              <option value=">Materials Engineering (4 Years, Bachelor of Technology)">
+              <option value="Biosciences and Bioengineering (4 Years, Bachelor of Technology)">
+              <option value="Chemistry (4 Years, Bachelor of Science)">
+              <option value="Economics (4 Years, Bachelor of Science)">
+              <option value="Mathematics and Scientific Computing (4 Years, Bachelor of Science)">
+              <option value="Physics (4 Years, Bachelor of Science)">
+              <option value="Earth Sciences (4 Years, Bachelor of Science)">
+              <option value="BS in Mathematics (4 Years, Bachelor of Science)">
+              <option value="Planning (4 Years, Bachelor of Planning)">
+              <option value="Architecture  (5 Years, Bachelor of Architecture)">
+              <option value="Architecture, Town and Regional Planning (5 Years, Bachelor of Architecture)">
+              <option value="Aerospace Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Agricultural and Food Engineering with M.Tech. in any of the listed specializations (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Biochemical Engineering with M.Tech. in Biochemical Engineering and Biotechnology (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Bioengineering with M.Tech in Biomedical Technology (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Biological Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Biotechnology and Biochemical Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Ceramic Engineering (5 Years, Bachelor and Master of Technology (Dual Degree)">
+              <option value="Environmental Science and Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Bio Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value=">Metallurgical Engineering &amp; Materials Science (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Chemical Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Civil Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Civil Engineering with any of the listed specialization (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Computer Science and Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Electrical Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Electrical Engineering with M.Tech. in any of the listed specializations (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value=">Electrical Engineering with M.Tech. in Power Electronics (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Electronics and Electrical Communication Engineering with M.Tech. in any of the listed specializations (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Energy Engineering with M.Tech. in Energy Systems Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Engineering Design (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Materials Science and Technology (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Mechanical Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Electronics and Communication Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Mechanical Engineering and M.Tech. in Computer Integrated Manufacturing (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Mechanical Engineering with M.Tech. in any of the listed specializations (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Metallurgical Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Industrial and Systems Engineering with M.Tech. in Industrial and Systems Engineering and Management (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Metallurgical and Materials Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Mining Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Mining Safety Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Ocean Engineering and Naval Architecture (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Quality Engineering Design and Manufacturing (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Mathematics and Computing (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Electrical  Engineering and M.Tech Power Electronics and Drives (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Chemical Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Ceramic Engineering and M.Tech Industrial Ceramic (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Civil Engineering and M.Tech in Transportation Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Engineering Physics (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Manufacturing Science and Engineering with M.Tech. in Industrial and Systems Engineering and Management (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Mechanical Engineering and M. Tech. in Mechanical System Design (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Mechanical Engineering and M. Tech. in Thermal Science &amp; Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Civil Engineering and M. Tech. in Structural Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Mechanical Engineering with M.Tech. in Manufacturing Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Civil Engineering and M.Tech. in Environmental Engineering (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Industrial Chemistry (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Pharmaceutical Engineering &amp; Technology (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Biotechnology (5 Years, Bachelor and Master of Technology (Dual Degree))">
+              <option value="Geological Technology (5 Years, Integrated Master of Technology)">
+              <option value="Geophysical Technology (5 Years, Integrated Master of Technology)">
+              <option value="Mathematics and Computing (5 Years, Integrated Master of Technology)">
+              <option value="Applied Geology (5 Years, Integrated Master of Technology)">
+              <option value="Applied Geophysics (5 Years, Integrated Master of Technology)">
+              <option value="Computer Science (5 Years, Integrated Master of Technology)">
+              <option value="Applied Geology (5 Years, Integrated Master of Science)">
+              <option value="Applied Mathematics (5 Years, Integrated Master of Science)">
+              <option value="Chemistry (5 Years, Integrated Master of Science)">
+              <option value="Economics (5 Years, Integrated Master of Science)">
+              <option value="Exploration Geophysics (5 Years, Integrated Master of Science)">
+              <option value="Mathematics and Computing (5 Years, Integrated Master of Science)">
+              <option value="Physics (5 Years, Integrated Master of Science)">
+              <option value="Mathematics (5 Years, Integrated Master of Science)">
+              <option value="Life Science (5 Years, Integrated Master of Science)">
+              <option value="Biological Sciences (5 Years, Bachelor of Science and Master of Science (Dual Degree))">
+              <option value="Physics (5 Years, Bachelor of Science and Master of Science (Dual Degree))">
+              <option value="Chemistry (5 Years, Bachelor of Science and Master of Science (Dual Degree))">
+              <option value="Mathematics &amp; Computing (5 Years, Bachelor of Science and Master of Science (Dual Degree))">
+              <option value="Integrated B. Tech.(IT) and M. Tech (IT) (5 Years, Integrated B. Tech. and M. Tech. /MBA)">
+              <option value="Integrated B. Tech.(IT) and MBA (5 Years, Integrated B. Tech. and M. Tech. /MBA)">
+              <option value="Computer Science &amp; Engineering  (5 Years, B.Tech. + M.Tech./MS (Dual Degree))">
+              <option value="Electronics &amp; Communication Engineering (5 Years, B.Tech. + M.Tech./MS (Dual Degree))">
+              </datalist>
+            </label>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <div class="college">
+              <label>institute-Name   
+         <select name="institute-name"  id="institute-name" > 
+           <option value="0">ALL</option>
+           <option value="101">Indian Institute  of Technology Bhubaneswar</option>
+           <option value="102">Indian Institute  of Technology Bombay</option>
+           <option value="103">Indian Institute  of Technology Mandi</option>
+           <option value="104">Indian Institute  of Technology Delhi</option>
+           <option value="105">Indian Institute  of Technology Indore</option>
+           <option value="106">Indian Institute  of Technology Kharagpur</option>
+           <option value="107">Indian Institute  of Technology Hyderabad</option>
+           <option value="108">Indian Institute  of Technology Jodhpur</option>
+           <option value="109">Indian Institute  of Technology Kanpur</option>
+           <option value="110">Indian Institute  of Technology Madras</option>
+           <option value="111">Indian Institute  of Technology Gandhinagar</option>
+           <option value="112">Indian Institute  of Technology Patna</option>
+           <option value="113">Indian Institute  of Technology Roorkee</option>
+           <option value="114">Indian Institute  of Technology (ISM) Dhanbad</option>
+           <option value="115">Indian Institute  of Technology Ropar</option>
+           <option value="116">Indian Institute  of Technology (BHU) Varanasi</option>
+           <option value="117">Indian Institute  of Technology Guwahati</option>
+           <option value="118">Indian Institute of Technology Bhilai</option>
+           <option value="119">Indian Institute of Technology Goa</option>
+           <option value="120">Indian Institute  of Technology Palakkad</option>
+           <option value="121">Indian Institute  of Technology Tirupati</option>
+           <option value="122">Indian Institute of Technology Jammu</option>
+           <option value="123">Indian Institute of Technology Dharwad</option>
+           <option value="201">Dr. B R Ambedkar National Institute of Technology, Jalandhar</option>
+           <option value="202">Malaviya National Institute of Technology Jaipur</option>
+           <option value="203">Maulana Azad National Institute of Technology Bhopal</option>
+           <option value="204">Motilal Nehru National Institute of Technology Allahabad</option>
+           <option value="205">National Institute of Technology  Agartala</option>
+           <option value="206">National Institute of Technology Calicut</option>
+           <option value="207">National Institute of Technology Delhi</option>
+           <option value="208">National Institute of Technology Durgapur</option>
+           <option value="209">National Institute of Technology Goa</option>
+           <option value="210">National Institute of Technology Hamirpur</option>
+           <option value="211">National Institute of Technology Karnataka, Surathkal</option>
+           <option value="212">National Institute of Technology Meghalaya</option>
+           <option value="213">National Institute of Technology Nagaland</option>
+           <option value="214">National Institute of Technology Patna</option>
+           <option value="215">National Institute of Technology Puducherry</option>
+           <option value="216">National Institute of Technology Raipur</option>
+           <option value="217">National Institute of Technology Sikkim</option>
+           <option value="218">National Institute of Technology Arunachal Pradesh </option>
+           <option value="219">National Institute of Technology, Jamshedpur</option>
+           <option value="220">National Institute of Technology, Kurukshetra</option>
+           <option value="221">National Institute of Technology, Manipur</option>
+           <option value="222">National Institute of Technology, Mizoram</option>
+           <option value="223">National Institute of Technology, Rourkela</option>
+           <option value="224">National Institute of Technology, Silchar</option>
+           <option value="225">National Institute of Technology, Srinagar</option>
+           <option value="226">National Institute of Technology, Tiruchirappalli</option>
+           <option value="227">National Institute of Technology, Uttarakhand</option>
+           <option value="228">National Institute of Technology, Warangal</option>
+           <option value="229">Sardar Vallabhbhai National Institute of Technology, Surat</option>
+           <option value="230">Visvesvaraya National Institute of Technology, Nagpur</option>
+           <option value="231">National Institute of Technology, Andhra Pradesh</option>
+           <option value="232">Indian Institute of Engineering Science and Technology, Shibpur</option>
+           <option value="301">Atal Bihari Vajpayee Indian Institute of Information Technology &amp; Management Gwalior</option>
+           <option value="302">Indian Institute of Information Technology (IIIT)Kota, Rajasthan</option>
+           <option value="303">Indian Institute of Information Technology Guwahati</option>
+           <option value="304">Indian Institute of Information Technology(IIIT) Kalyani, West Bengal</option>
+           <option value="305">Indian Institute of Information Technology(IIIT) Kilohrad, Sonepat, Haryana</option>
+           <option value="306">Indian Institute of Information Technology(IIIT) Una, Himachal Pradesh</option>
+           <option value="307">Indian Institute of Information Technology (IIIT), Sri City, Chittoor</option>
+           <option value="308">Indian Institute of Information Technology(IIIT), Vadodara, Gujrat</option>
+           <option value="309">Indian Institute of Information Technology, Allahabad</option>
+           <option value="310">Indian Institute of Information Technology, Design &amp; Manufacturing, Kancheepuram</option>
+           <option value="311">Pt. Dwarka Prasad Mishra Indian Institute of Information Technology, Design &amp; Manufacture Jabalpur</option>
+           <option value="312">Indian Institute of Information Technology  Manipur</option>
+           <option value="313">Indian Institute of Information Technology Srirangam, Tiruchirappalli</option>
+           <option value="314">Indian Institute of Information Technology Lucknow</option>
+           <option value="315">Indian Institute of Information Technology(IIIT) Dharwad </option>
+           <option value="316">Indian Institute of Information Technology Design &amp; Manufacturing Kurnool, Andhra Pradesh</option>
+           <option value="317">Indian Institute of Information Technology(IIIT) Kottayam</option>
+           <option value="318">Indian Institute of Information Technology (IIIT) Ranchi</option>
+           <option value="319">Indian Institute of Information Technology (IIIT) Nagpur</option>
+           <option value="320">Indian Institute of Information Technology (IIIT) Pune</option>
+           <option value="321">Indian Institute of Information Technology Bhagalpur</option>
+           <option value="322">Indian Institute of Information Technology Bhopal</option>
+           <option value="323">Indian Institute of Information Technology Surat</option>
+           <option value="324">Indian Institute of Information Technology, Agartala</option>
+           <option value="325">Indian institute of information technology, Raichur, Karnataka</option>
+           <option value="326">Indian Institute of Information Technology, Vadodara International Campus Diu (IIITVICD)</option>
+           <option value="401">Assam University, Silchar</option>
+           <option value="402">Birla Institute of Technology, Mesra,  Ranchi</option>
+           <option value="403">Gurukula Kangri Vishwavidyalaya, Haridwar</option>
+           <option value="404">Indian Institute of Carpet Technology,  Bhadohi</option>
+           <option value="405">Institute of Infrastructure, Technology, Research and Management-Ahmedabad</option>
+           <option value="406">Institute of Technology, Guru Ghasidas Vishwavidyalaya (A Central University), Bilaspur, (C.G.)</option>
+           <option value="407">J.K. Institute of Applied Physics &amp; Technology, Department of Electronics &amp; Communication, University of Allahabad- Allahabad</option>
+           <option value="408">National Institute of Electronics and Information Technology, Aurangabad (Maharashtra)</option>
+           <option value="409">National Institute of Foundry &amp; Forge Technology, Hatia, Ranchi</option>
+           <option value="410">Sant Longowal Institute of Engineering and Technology</option>
+           <option value="411">Mizoram University, Aizawl</option>
+           <option value="412">School of Engineering, Tezpur University, Napaam, Tezpur</option>
+           <option value="413">School of Planning &amp; Architecture, Bhopal</option>
+           <option value="414">School of Planning &amp; Architecture, New Delhi</option>
+           <option value="415">School of Planning &amp; Architecture: Vijayawada</option>
+           <option value="416">Shri Mata Vaishno Devi University, Katra, Jammu &amp; Kashmir</option>
+           <option value="417">HNB Garhwal University Srinagar (Garhwal)</option>
+           <option value="418">International Institute of Information Technology, Naya Raipur</option>
+           <option value="419">University of Hyderabad</option>
+           <option value="420">Punjab Engineering College, Chandigarh</option>
+           <option value="421">Jawaharlal Nehru University, Delhi</option>
+           <option value="422">International Institute of Information Technology, Bhubaneswar</option>
+           <option value="423">Central institute of Technology Kokrajar, Assam</option>
+           <option value="424">Pondicherry Engineering College, Puducherry</option>
+           <option value="425">Ghani Khan Choudhary Institute of Engineering and Technology, Malda, West Bengal</option>
+           <option value="426">Central University of Rajasthan, Rajasthan</option>
+           <option value="427">National Institute of Food Technology Entrepreneurship and Management, Sonepat, Haryana</option>
+           <option value="428">lndian Institute of Food Processing Technology, Thanjavur, Tamil Naidu.</option>
+           <option value="429">North Eastern Regional Institute of Science and Technology, Nirjuli-791109 (Itanagar),Arunachal Pradesh
+         </option>
+         </select>
+              </label></div>
+          </div>
+<div class="input-box">
+  <div class='pwd :'>
+    <label for='pwd'>PwD</label>
+    <div class='radio-container'>
+      <input checked='' id='pwd-Yes' name='pwd' type='radio' value='yes'>
+      <label for='pwd-Yes'>Yes</label>
+      <input checked='' id='pwd-No' name='pwd' type='radio' value='NO'>
+      <label for='pwd-No'>No</label>
+    </div>
+  </div>
+    </div>
+   
+      <div class="input-box"> 
+        <div class="input-container" id="open">
+          <label > ALL-INDIA-RANK</label>
+          <input type="text"  id="allindiarank"  placeholder="ALL-INDIA-RANK" name="open" class="input" required />
+          <label for=""></label>
+          <span></span>
+        </div>
+        </div>
+       
+    <div class="input-box"></div>
+
+     
+      <div class="input-box">  
+        <div class="input-container" id="reserve" style="display: none;">
+          <label>Category-RANK</label>
+        <input type="text" id="Category-RANK"  placeholder="Category-RANK"   name="categoryrank" class="input" required />
+        <label for=""></label>
+        <span></span>
+      </div>
+      </div>
+
+     
+</div>
+
+
+        <div class="button">
+          <input type="submit" value="submit">
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
